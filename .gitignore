@@ -16,6 +16,7 @@ dist-wp/
 *sample*
 *sample*.*
 dist-wp/
+dist
 
 # CakePHP specific files #
 ##########################
