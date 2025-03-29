@@ -1,0 +1,8 @@
+@use 'mixin';
+
+h1 {
+  font-size: 4rem;
+  @include mixin.mobile {
+    color: red;
+  }
+}

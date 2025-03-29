@@ -1,0 +1,7 @@
+-
+  const rootDir = '/common/';
+  const bpMobile = '959px';
+
+mixin img(src, alt, w, h)
+  - let _src = rootDir + 'images/' + src;
+  img(src=_src, alt=alt, width=w, height=h)&attributes(attributes)
