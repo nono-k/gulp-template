@@ -6,9 +6,16 @@ html
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Pug & SCSS with Gulp
-    link(rel="stylesheet", href="common/css/styles.css")
+    link(rel="stylesheet", href="/common/css/styles.css")
   body
     h1 Hello, Gulp with Pug & SCSS!
     p This is a test page.
-    //- +img('dummy.jpg', 'dummy', '100', '100')
-    <img src="/common/images/dummy.jpg?v=1" alt="Dummy Image">
+
+    .swiper
+      .swiper-wrapper
+        - for (var i = 0; i < 9; i++)
+          .swiper-slide
+            img(src=`https://picsum.photos/800/400?random=${i}`, alt="")
+
+    script(src="/common/js/vendor.js")
+    script(src="/common/js/scripts.js")
