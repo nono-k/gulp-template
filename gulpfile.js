@@ -4,8 +4,10 @@ const sass = require("gulp-sass")(require("sass"));
 const plumber = require("gulp-plumber");
 const postcss = require("gulp-postcss");
 const autoprefixer = require("autoprefixer");
+const browserSync = require("browser-sync").create();
 const include = require("gulp-include");
 const uglify = require("gulp-uglify");
+
 
 // ** Pug のコンパイル **
 const compilePug = () => {
