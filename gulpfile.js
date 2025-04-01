@@ -12,7 +12,7 @@ const uglify = require("gulp-uglify");
 // ** Pug のコンパイル **
 const compilePug = () => {
   return gulp
-    .src(["src/pages/**/*.pug", "!src/components/**"]) // components直下で始まるファイルは対象外
+    .src(["src/pages/**/*.pug", "!src/pug/**"]) // pug直下で始まるファイルは対象外
     .pipe(plumber()) // エラーが発生しても止まらないようにする
     .pipe(pug({ pretty: true })) // PugをHTMLに変換（圧縮しない）
     .pipe(gulp.dest("dist")) // 出力先
@@ -70,10 +70,10 @@ const serve = () => {
   });
 
   gulp.watch("src/pages/**/*.pug", compilePug);
-  gulp.watch("src/components/**/*.pug", compilePug);
+  gulp.watch("src/pug/**/*.pug", compilePug);
   gulp.watch("src/styles/**/*.scss", compileSass);
   gulp.watch("src/scripts/**/*.js", compileJS);
-  gulp.watch("src/public/images/**/*", gulp.series(copyImages));
+  gulp.watch("src/public/images/**/*", copyImages);
   gulp.watch("dist/**/*.html").on("change", browserSync.reload);
 };
 
