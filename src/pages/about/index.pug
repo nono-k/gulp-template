@@ -1,4 +1,5 @@
 include ../../../src/pug/base/meta
+include ../../../src/pug/mixin
 
 doctype html
 html
@@ -16,7 +17,7 @@ html
 
     h1 about
     p This is a test page.
-    <img src="/common/images/about/about.jpg" alt="Dummy Image">
+    +img("about/about.jpg", "Dummy Image")
 
     include ../../../src/pug/base/footer
     include ../../../src/pug/base/body-append

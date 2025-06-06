@@ -7,6 +7,9 @@ const autoprefixer = require("autoprefixer");
 const browserSync = require("browser-sync").create();
 const include = require("gulp-include");
 const uglify = require("gulp-uglify");
+const gulpData = require("gulp-data");
+const imageSize = require("image-size");
+const path = require("path");
 
 
 // ** Pug のコンパイル **
@@ -14,6 +17,20 @@ const compilePug = () => {
   return gulp
     .src(["src/pages/**/*.pug", "!src/pug/**"]) // pug直下で始まるファイルは対象外
     .pipe(plumber()) // エラーが発生しても止まらないようにする
+    .pipe(gulpData((file) => {
+      return {
+        imageSize: (src) => {
+          const replaceSrc = src.replace('/common/', '');
+          const imagePath = path.resolve(__dirname, 'src/public', replaceSrc);
+          try {
+            return imageSize(imagePath);
+          } catch (error) {
+            console.error(`Error: ${error.message}`);
+            return { width: null, height: null };
+          }
+        }
+      }
+    }))
     .pipe(pug({ pretty: true })) // PugをHTMLに変換（圧縮しない）
     .pipe(gulp.dest("dist")) // 出力先
     .pipe(browserSync.stream());
